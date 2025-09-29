@@ -200,6 +200,39 @@ add_action('admin_head', function() {
   </style>';
 });
 
+
+
+// SWUP SPA Implementation
+function enqueue_swup_scripts() {
+  // SWUP desde CDN
+  wp_enqueue_script(
+    'swup',
+    'https://unpkg.com/swup@4/dist/Swup.modern.js',
+    [],
+    '4.6.1',
+    true
+  );
+  
+  // Tu init simple
+  wp_enqueue_script(
+    'swup-init',
+    get_template_directory_uri() . '/assets/js/swup-init.js',
+    ['swup'],
+    '1.0.0',
+    true
+  );
+  
+  // CSS transitions
+  wp_enqueue_style(
+    'swup-transitions',
+    get_template_directory_uri() . '/assets/css/swup-transitions.css',
+    ['theme-tailwind'],
+    '1.0.0'
+  );
+}
+add_action('wp_enqueue_scripts', 'enqueue_swup_scripts');
+
+
 // 🧠 Columnas personalizadas para el dashboard (mover archivo a /functions/)
 require_once get_template_directory() . '/functions/columns-dashboard.php';
 
@@ -208,3 +241,11 @@ require_once get_template_directory() . '/filtros/ajax-filtros.php';
 
 //metatags para el opengraph para compartir
 require_once get_template_directory() . '/functions/open-graph.php';
+
+
+//full screen buttom
+/* require_once get_template_directory() . '/functions/full-screen-buttom.php';
+ */
+
+
+
